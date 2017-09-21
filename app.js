@@ -7,6 +7,8 @@ var bodyParser = require('body-parser');
 
 var index = require('./routes/index');
 var dictionaries = require('./routes/dictionaries');
+var dictionaryAttributes = require('./routes/dictionaryAttributes');
+var types = require('./routes/types');
 
 var app = express();
 
@@ -24,6 +26,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', index);
 app.use('/dictionaries', dictionaries);
+app.use('/dictionaryAttributes', dictionaryAttributes);
+app.use('/:asjdif', types);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
