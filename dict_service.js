@@ -49,17 +49,7 @@ exports.delete = (item_id) => {
 exports.update = (item_id, dict_id, values) => {																															//функция для изменения данных айтема
 	return db.sequelize.transaction(t => {
 		return DictionaryAttribute.findAll({where: {dictionary_id: dict_id}}, {transaction: t}).then(result => {	// Ищем все аттрибуты, которые соответсвуют словарю, в котором находится айтем, который хотим поменять
-			result.forEach(attr => {																																								
-				ItemValue.findOne({where: {item_id: item_id}}, {transaction: t}).then(itemValue => {						// Для каждого аттрибута ищем значения
-					if(values[attr.name]) {																																				// если значение есть в запросе, то идем дальше
-						valueType = selectValueType(values[attr.name]);																							// Получаем поле, которое нужно изменить
-						console.log(values[attr.name]);
-						console.log(itemValue[valueType]);
-						itemValue[valueType] = values[attr.name];																										// Присваиваем нужное значение, после этого надо сохранить
-						itemValue.save();
-					}
-				})
-			})
+		//Здесь будет код обработки найденых аттрибутов
 		})
 	})
 }
