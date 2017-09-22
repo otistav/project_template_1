@@ -18,4 +18,20 @@ router.post('/:dict_code_name', function(req, res, next) {
 
 })
 
+router.delete('/:dict_code_name', function(req, res, next) {
+	dict_service.delete(req.body.item_id).then(() => {
+		res.send("deleted");
+	}).catch(err => {
+		next(err);
+	})
+})
+
+router.patch('/:dict_code_name/:id', function(req, res, next) {
+	dict_service.update(req.params.id, req.body.dict_id, req.body.new_values).then(result => {
+		res.send(result);
+	}).catch(err => {
+		next(err);
+	})
+})
+
 module.exports = router;
