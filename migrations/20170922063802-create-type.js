@@ -1,17 +1,14 @@
 'use strict';
-
 module.exports = {
   up: (queryInterface, Sequelize) => {
     return queryInterface.createTable('Types', {
-      id: {
+      uuid: {
         allowNull: false,
-        autoIncrement: true,
         primaryKey: true,
-        type: Sequelize.INTEGER
+        type: Sequelize.UUID
       },
       type_name: {
-        type: Sequelize.STRING,
-        unique: true
+        type: Sequelize.STRING
       },
       createdAt: {
         allowNull: false,
@@ -23,14 +20,7 @@ module.exports = {
       }
     });
   },
-
   down: (queryInterface, Sequelize) => {
-    /*
-      Add reverting commands here.
-      Return a promise to correctly handle asynchronicity.
-
-      Example:
-      return queryInterface.dropTable('users');
-    */
+    return queryInterface.dropTable('Types');
   }
 };

@@ -2,30 +2,29 @@
 module.exports = {
   up: (queryInterface, Sequelize) => {
     return queryInterface.createTable('DictionaryAttributes', {
-      id: {
+      uuid: {
         allowNull: false,
-        autoIncrement: true,
         primaryKey: true,
-        type: Sequelize.INTEGER
+        type: Sequelize.UUID
       },
-      attribute_name: {
-        type: Sequelize.STRING
+      name: {
+        type: Sequelize.STRING,
+        unique: true
       },
       dictionary_id: {
-        type: Sequelize.INTEGER,
+        type: Sequelize.UUID,
         references: {
           model: 'Dictionaries',
-          key: 'id'
+          key: 'uuid'
         }
       },
       type_id: {
-        type: Sequelize.INTEGER,
+        type: Sequelize.UUID,
         references: {
           model: 'Types',
-          key: 'id'
+          key: 'uuid'
         }
       },
-
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE
@@ -37,6 +36,6 @@ module.exports = {
     });
   },
   down: (queryInterface, Sequelize) => {
-    return queryInterface.dropTable('Attributes');
+    return queryInterface.dropTable('DictionaryAttributes');
   }
 };

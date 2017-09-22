@@ -2,34 +2,22 @@
 module.exports = {
   up: (queryInterface, Sequelize) => {
     return queryInterface.createTable('ItemValues', {
-      id: {
+      uuid: {
         allowNull: false,
-        autoIncrement: true,
         primaryKey: true,
-        type: Sequelize.INTEGER
+        type: Sequelize.UUID
       },
       attribute_id: {
-        type: Sequelize.INTEGER,
-        references: {
-          model: 'DictionaryAttributes',
-          key: 'id'
-        }
+        type: Sequelize.UUID
       },
       item_id: {
-        type: Sequelize.INTEGER,
-        references: {
-          model: 'Items',
-          key: 'id'
-        }
+        type: Sequelize.UUID
       },
       number_value: {
         type: Sequelize.INTEGER
       },
       string_value: {
         type: Sequelize.STRING
-      },
-      boolean_value: {
-        type: Sequelize.BOOLEAN
       },
       date_value: {
         type: Sequelize.DATE
